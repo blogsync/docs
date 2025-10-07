@@ -18,13 +18,19 @@
         "group": "Getting started",
         "pages": [
           "index",
-          "quickstart"
+          "getting-started"
         ]
       },
       {
         "group": "Connecting Your CMS",
         "pages": [
           "connections/how-to-connect-your-cms"
+        ]
+      },
+      {
+        "group": "Connecting Your CMS",
+        "pages": [
+          "settings/user-roles"
         ]
       }
     ]
