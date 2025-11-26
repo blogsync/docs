@@ -24,7 +24,9 @@
       {
         "group": "Connecting Your CMS",
         "pages": [
-          "connections/how-to-connect-your-cms"
+          "connections/how-to-connect-your-cms",
+          "connections/how-to-connect-wordpress",
+          "connections/how-to-connect-webflow"
         ]
       },
       {
