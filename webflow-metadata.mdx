@@ -8,8 +8,6 @@ When using **Advanced Mode** for Webflow staging, you can include a metadata tab
 
 This table is automatically detected during conversion, its values are extracted and mapped to your Webflow CMS fields, and the table itself is removed from the final published content.
 
----
-
 ## Table Format
 
 The metadata table must follow these rules:
@@ -32,8 +30,6 @@ The metadata table must follow these rules:
 | Main Image       | _(insert the image directly in this cell)_ |
 | Thumbnail Image  | _(insert the image directly in this cell)_ |
 
----
-
 ## Supported Fields
 
 Field names are **case-insensitive**. Spaces and hyphens are interchangeable (e.g., "Meta Description", "meta-description", and "metadescription" all work).
@@ -52,8 +48,6 @@ Field names are **case-insensitive**. Spaces and hyphens are interchangeable (e.
 | Category         | `category`                        | Content category                 |
 | Tags             | `tags`                            | Comma-separated tags             |
 
----
-
 ## Image Fields
 
 For image fields (**Main Image**, **Thumbnail Image**, etc.), insert the actual image directly into the right-hand cell of the table in your document. **Do not type a file path or URL.**
@@ -67,8 +61,6 @@ During conversion:
 
 If the image cannot be matched to an uploaded asset, the field is left empty rather than using a wrong image.
 
----
-
 ## How It Works
 
 1. Upload your document with the metadata table at the top.
@@ -78,8 +70,6 @@ If the image cannot be matched to an uploaded asset, the field is left empty rat
 5. Images in the document (including metadata table images) are optimized and uploaded to Webflow.
 6. When staging in Advanced Mode, each mapped Webflow CMS field is populated with the corresponding metadata value.
 7. Any fields not specified in the table fall back to auto-generated values.
-
----
 
 ## Important Notes
 
@@ -107,8 +97,6 @@ The metadata table is only used when your Webflow connection is set to **Advance
 
 Use a standard date format such as `YYYY-MM-DD` (e.g., `2026-02-20`) for best compatibility with Webflow date fields.
 
----
-
 ## Custom Fields
 
 In addition to the built-in fields listed above, you can map **any custom field** from your metadata table to a Webflow CMS field.
@@ -116,7 +104,7 @@ In addition to the built-in fields listed above, you can map **any custom field*
 ### How to Use Custom Fields
 
 1. In your document's metadata table, add a row with your custom field name in the left column and its value in the right column.
-2. In BlogSync's Webflow connection settings (Advanced Mode), click **Custom **top open to the Custom Fields section.
+2. In BlogSync's Webflow connection settings (Advanced Mode), click \*\*Custom \*\*top open to the Custom Fields section.
 3. Type the same field name you used in your document and click **Add**.
 4. Map it to the desired Webflow CMS field using the dropdown.
 

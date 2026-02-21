@@ -13,7 +13,7 @@
     "dark": "/logo/dark.svg"
   },
   "navigation": {
-    "pages": [
+    "groups": [
       {
         "group": "Getting started",
         "pages": [
@@ -35,7 +35,12 @@
           "settings/user-roles"
         ]
       },
-      "webflow-metadata"
+      {
+        "group": "Advanced",
+        "pages": [
+          "webflow-metadata"
+        ]
+      }
     ]
   },
   "anchors": [
