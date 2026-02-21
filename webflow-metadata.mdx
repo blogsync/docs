@@ -1,0 +1,145 @@
+---
+title: "Advanced Webflow Field Mapping"
+---
+
+## Overview
+
+When using **Advanced Mode** for Webflow staging, you can include a metadata table at the top of your document to define values for specific CMS fields like title, slug, SEO metadata, and images.
+
+This table is automatically detected during conversion, its values are extracted and mapped to your Webflow CMS fields, and the table itself is removed from the final published content.
+
+---
+
+## Table Format
+
+The metadata table must follow these rules:
+
+- It must be a **two-column table** placed at the very top of the document (before any headings, paragraphs, or other content).
+- The **left column** contains the field name.
+- The **right column** contains the value for that field.
+- Every row must have exactly **two cells**.
+- The table must contain at least one **recognized field** (see supported fields below) anywhere in the table, OR have **at least two rows**. This is how BlogSync distinguishes a metadata table from regular table content.
+
+### Example
+
+| Field Name       | Value                                      |
+| ---------------- | ------------------------------------------ |
+| Title            | My Blog Post                               |
+| Slug             | my-blog-post                               |
+| Meta Description | A brief summary of the post for SEO.       |
+| Excerpt          | In this article, we'll explore...          |
+| Date             | 2026-02-20                                 |
+| Main Image       | _(insert the image directly in this cell)_ |
+| Thumbnail Image  | _(insert the image directly in this cell)_ |
+
+---
+
+## Supported Fields
+
+Field names are **case-insensitive**. Spaces and hyphens are interchangeable (e.g., "Meta Description", "meta-description", and "metadescription" all work).
+
+| Field Name       | Accepted Aliases                  | Description                      |
+| ---------------- | --------------------------------- | -------------------------------- |
+| Title            | `title`                           | The item name / title in Webflow |
+| Slug             | `slug`                            | URL slug for the CMS item        |
+| Date             | `date`                            | Publish or content date          |
+| Meta Title       | `meta-title`, `metatitle`         | SEO page title                   |
+| Meta Description | `meta-description`, `description` | SEO meta description             |
+| Excerpt          | `excerpt`                         | Short summary or preview text    |
+| Main Image       | `main-image`, `featured-image`    | Primary featured / hero image    |
+| Thumbnail Image  | `thumbnail-image`, `thumbnail`    | Thumbnail or card image          |
+| Author           | `author`                          | Author name                      |
+| Category         | `category`                        | Content category                 |
+| Tags             | `tags`                            | Comma-separated tags             |
+
+---
+
+## Image Fields
+
+For image fields (**Main Image**, **Thumbnail Image**, etc.), insert the actual image directly into the right-hand cell of the table in your document. **Do not type a file path or URL.**
+
+During conversion:
+
+1. The image is extracted from the document.
+2. It is optimized and converted to WebP format.
+3. It is uploaded to Webflow as an asset.
+4. The resulting Webflow CDN URL is used as the field value.
+
+If the image cannot be matched to an uploaded asset, the field is left empty rather than using a wrong image.
+
+---
+
+## How It Works
+
+1. Upload your document with the metadata table at the top.
+2. BlogSync converts the document to HTML and detects the metadata table.
+3. Field names and values are extracted from the table rows.
+4. The table is removed from the body HTML.
+5. Images in the document (including metadata table images) are optimized and uploaded to Webflow.
+6. When staging in Advanced Mode, each mapped Webflow CMS field is populated with the corresponding metadata value.
+7. Any fields not specified in the table fall back to auto-generated values.
+
+---
+
+## Important Notes
+
+### Table Must Be Near the Top
+
+The metadata table must be at the **top of your document**. Small Word artifacts like bookmarks or tab markers before the table are automatically skipped, but any substantial text or headings before the table will prevent it from being recognized as metadata.
+
+### Only Include Fields You Need
+
+You do not need to include every field. Any field you omit will use its auto-generated value:
+
+- **Title** defaults to the document filename.
+- **Slug** is generated from the title.
+- **Excerpt** is pulled from the first paragraph of the content.
+
+### Table Is Stripped from Output
+
+The metadata table is automatically removed from the body content before it is staged to Webflow. It will not appear in your published article.
+
+### Advanced Mode Only
+
+The metadata table is only used when your Webflow connection is set to **Advanced Mode** with field mappings configured. In Simple Mode, the table is treated as regular content.
+
+### Date Format
+
+Use a standard date format such as `YYYY-MM-DD` (e.g., `2026-02-20`) for best compatibility with Webflow date fields.
+
+---
+
+## Custom Fields
+
+In addition to the built-in fields listed above, you can map **any custom field** from your metadata table to a Webflow CMS field.
+
+### How to Use Custom Fields
+
+1. In your document's metadata table, add a row with your custom field name in the left column and its value in the right column.
+2. In BlogSync's Webflow connection settings (Advanced Mode), click **Custom **top open to the Custom Fields section.
+3. Type the same field name you used in your document and click **Add**.
+4. Map it to the desired Webflow CMS field using the dropdown.
+
+### Example
+
+Your metadata table might look like:
+
+| Field Name | Value                                    |
+| ---------- | ---------------------------------------- |
+| Title      | My Blog Post                             |
+| CTA Text   | Sign up for our newsletter               |
+| Author Bio | Jane is a freelance writer based in NYC. |
+| Logo       | _(insert image in this cell)_            |
+| Pros       | _(bullet list with bold labels)_         |
+
+In the Webflow connection settings, you would add custom fields like "CTA Text", "Author Bio", "Logo", and "Pros", then map each to the corresponding Webflow CMS field. For example, map "Logo" to an Image field, "Pros" to a RichText field, and "CTA Text" to a PlainText field.
+
+### Notes on Custom Fields
+
+- The metadata table must contain at least one recognized built-in field (e.g., Title, Slug) OR at least two rows. This is how BlogSync identifies the table as metadata rather than regular content.
+- The field name in your document and the custom field name in BlogSync must match (case-insensitive, spaces and hyphens are interchangeable).
+- Custom fields support all Webflow field types: PlainText, RichText, Link, Number, and Image.
+- For **Image** fields, insert the image directly into the right-hand cell of your metadata table. The image will be optimized, uploaded to Webflow, and the CDN URL will be used as the field value.
+- For **RichText** fields, you can use formatted content in the value cell, including bullet lists, numbered lists, bold, italic, and links. The formatting is preserved when sent to Webflow.
+- If a custom field is mapped but the metadata table does not contain that field, the Webflow CMS field is left empty.
+- Custom field mappings are saved with your connection settings and persist across uploads

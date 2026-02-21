@@ -13,7 +13,7 @@
     "dark": "/logo/dark.svg"
   },
   "navigation": {
-    "groups": [
+    "pages": [
       {
         "group": "Getting started",
         "pages": [
@@ -30,11 +30,12 @@
         ]
       },
       {
-        "group": "Connecting Your CMS",
+        "group": "Settings",
         "pages": [
           "settings/user-roles"
         ]
-      }
+      },
+      "webflow-metadata"
     ]
   },
   "anchors": [
