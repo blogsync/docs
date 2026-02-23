@@ -30,6 +30,12 @@
         ]
       },
       {
+        "group": "Advanced",
+        "pages": [
+          "advanced/webflow-mapping"
+        ]
+      },
+      {
         "group": "Settings",
         "pages": [
           "settings/user-roles"
@@ -37,9 +43,7 @@
       },
       {
         "group": "Advanced",
-        "pages": [
-          "webflow-mapping"
-        ]
+        "pages": []
       }
     ]
   },
